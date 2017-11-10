@@ -1,4 +1,4 @@
-package com.chuangshiji;
+package com.genesis;
 
 public class test {
 
