@@ -2,6 +2,8 @@ package com.genesis.utils;
 
 import okhttp3.ConnectionPool;
 
+import java.util.concurrent.TimeUnit;
+
 /**
  * @author Terry
  */
@@ -16,6 +18,12 @@ public class Config {
 
     private ConnectionPool connectionPool;
 
+    public Config(Builder builder) {
+        this.connectTimeout = builder.connectTimeout;
+        this.readTimeout = builder.readTimeout;
+        this.writeTimeout = builder.writeTimeout;
+        connectionPool = new ConnectionPool(builder.maxConnection,builder.keepAlive, TimeUnit.MILLISECONDS);
+    }
 
     public static class Builder{
 
@@ -37,45 +45,38 @@ public class Config {
             this.keepAlive = 300000;
         }
 
-        public long getConnectTimeout() {
-            return connectTimeout;
-        }
-
-        public void setConnectTimeout(long connectTimeout) {
+        public Builder connectTimeout(long connectTimeout) {
             this.connectTimeout = connectTimeout;
+            return this;
         }
 
-        public long getReadTimeout() {
-            return readTimeout;
-        }
 
-        public void setReadTimeout(long readTimeout) {
+        public Builder readTimeout(long readTimeout) {
             this.readTimeout = readTimeout;
+            return this;
         }
 
-        public long getWriteTimeout() {
-            return writeTimeout;
-        }
 
-        public void setWriteTimeout(long writeTimeout) {
+        public Builder writeTimeout(long writeTimeout) {
             this.writeTimeout = writeTimeout;
+            return this;
         }
 
-        public int getMaxConnection() {
-            return maxConnection;
-        }
 
-        public void setMaxConnection(int maxConnection) {
+        public Builder maxConnection(int maxConnection) {
             this.maxConnection = maxConnection;
+            return this;
         }
 
-        public long getKeepAlive() {
-            return keepAlive;
-        }
-
-        public void setKeepAlive(long keepAlive) {
+        public Builder keepAlive(long keepAlive) {
             this.keepAlive = keepAlive;
+            return this;
         }
+
+        public Config build() {
+            return new Config(this);
+        }
+
     }
 
 }
