@@ -5,7 +5,7 @@ import com.google.common.base.Joiner;
 import java.util.HashMap;
 import java.util.Map;
 
-public class UrlDeal {
+public class UrlDealUtils {
 
     private final static Joiner.MapJoiner MAP_JOINER = Joiner.on("&").withKeyValueSeparator("=");
 
