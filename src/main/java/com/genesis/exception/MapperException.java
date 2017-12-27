@@ -15,11 +15,11 @@ public class MapperException extends ConnectionException {
         super(msg);
     }
 
-    public MapperException(Throwable nestedThrowable) {
-        super(nestedThrowable);
+    public MapperException(Throwable t) {
+        super(t);
     }
 
-    public MapperException(String msg, Throwable nestedThrowable) {
-        super(msg, nestedThrowable);
+    public MapperException(String msg, Throwable t) {
+        super(msg, t);
     }
 }
