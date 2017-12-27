@@ -7,7 +7,7 @@ import java.util.concurrent.TimeUnit;
 /**
  * @author Terry
  */
-public class Config {
+public class HttpConfig {
 
 
     private long connectTimeout;
@@ -18,7 +18,7 @@ public class Config {
 
     private ConnectionPool connectionPool;
 
-    public Config(Builder builder) {
+    public HttpConfig(Builder builder) {
         this.connectTimeout = builder.connectTimeout;
         this.readTimeout = builder.readTimeout;
         this.writeTimeout = builder.writeTimeout;
@@ -73,8 +73,8 @@ public class Config {
             return this;
         }
 
-        public Config build() {
-            return new Config(this);
+        public HttpConfig build() {
+            return new HttpConfig(this);
         }
 
     }
