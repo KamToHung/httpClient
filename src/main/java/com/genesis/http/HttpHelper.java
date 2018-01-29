@@ -3,7 +3,10 @@ package com.genesis.http;
 import com.genesis.utils.HttpConfig;
 import okhttp3.MediaType;
 import okhttp3.OkHttpClient;
+import okhttp3.Request;
+import okhttp3.Response;
 
+import java.io.IOException;
 import java.util.concurrent.TimeUnit;
 
 public class HttpHelper {
@@ -29,5 +32,16 @@ public class HttpHelper {
                 .readTimeout(httpConfig.readTimeout, TimeUnit.MILLISECONDS)
                 .writeTimeout(httpConfig.writeTimeout, TimeUnit.MILLISECONDS).build();
         this.defaultClient = false;
+    }
+
+    /**
+     * 执行请求
+     *
+     * @param request
+     * @return
+     * @throws IOException
+     */
+    public Response execute(Request request) throws IOException {
+        return okHttpClient.newCall(request).execute();
     }
 }

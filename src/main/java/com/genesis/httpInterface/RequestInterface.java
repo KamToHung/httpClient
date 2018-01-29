@@ -1,6 +1,7 @@
 package com.genesis.httpInterface;
 
 import com.genesis.entity.ResponseBean;
+import com.genesis.exception.ConnectionException;
 import com.genesis.exception.MapperException;
 import com.genesis.http.HttpHelper;
 import com.genesis.utils.HttpConfig;
@@ -62,7 +63,7 @@ public interface RequestInterface {
      * @param <T>
      * @return
      */
-    <T> ResponseBean<T> post(String url, Class<T> responseType, String content, MediaType mediaType) throws MapperException;
+    <T> ResponseBean<T> post(String url, Class<T> responseType, String content, MediaType mediaType) throws MapperException, ConnectionException;
 
     /**
      *
