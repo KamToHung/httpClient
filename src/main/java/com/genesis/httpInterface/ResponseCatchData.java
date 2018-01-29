@@ -5,6 +5,8 @@ import com.genesis.exception.MapperException;
 import okhttp3.Request;
 import okhttp3.Response;
 
+import java.io.IOException;
+
 public interface ResponseCatchData<T> {
 
     /**
@@ -15,5 +17,5 @@ public interface ResponseCatchData<T> {
      * @return
      * @throws MapperException
      */
-    T catchDate(Request request, Response response, ResponseCallBack responseCallBack) throws MapperException;
+    T catchDate(Request request, Response response, ResponseCallBack responseCallBack) throws MapperException, IOException;
 }

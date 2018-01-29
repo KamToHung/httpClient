@@ -42,7 +42,7 @@ public class ResponseBean<T> {
         return value;
     }
 
-    public ResponseBean(Response response, Request request, String responseBody, T value) {
+    public ResponseBean(Request request, Response response, T value, String responseBody) {
         this.response = response;
         this.request = request;
         this.responseBody = responseBody;

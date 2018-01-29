@@ -1,6 +1,7 @@
 package com.genesis.httpInterface;
 
 import com.genesis.entity.ResponseBean;
+import com.genesis.exception.MapperException;
 import com.genesis.http.HttpHelper;
 import com.genesis.utils.HttpConfig;
 import okhttp3.MediaType;
@@ -8,6 +9,9 @@ import okhttp3.MediaType;
 import java.util.Map;
 
 public interface RequestInterface {
+
+
+    ObjectMapper objectMapper();
 
     /**
      * 请求对象
@@ -58,7 +62,7 @@ public interface RequestInterface {
      * @param <T>
      * @return
      */
-    <T> ResponseBean<T> post(String url, Class<T> responseType, String content, MediaType mediaType);
+    <T> ResponseBean<T> post(String url, Class<T> responseType, String content, MediaType mediaType) throws MapperException;
 
     /**
      *

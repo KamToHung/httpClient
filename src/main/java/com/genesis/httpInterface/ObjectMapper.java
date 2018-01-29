@@ -1,10 +1,7 @@
 package com.genesis.httpInterface;
 
-import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.dataformat.xml.XmlMapper;
 import com.genesis.exception.MapperException;
-
-import java.io.IOException;
 
 
 /**
@@ -72,4 +69,6 @@ public interface ObjectMapper {
             }
         }
     };
+
+
 }
