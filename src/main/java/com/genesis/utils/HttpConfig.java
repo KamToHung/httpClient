@@ -10,13 +10,13 @@ import java.util.concurrent.TimeUnit;
 public class HttpConfig {
 
 
-    private long connectTimeout;
+    public long connectTimeout;
 
-    private long readTimeout;
+    public long readTimeout;
 
-    private long writeTimeout;
+    public long writeTimeout;
 
-    private ConnectionPool connectionPool;
+    public ConnectionPool connectionPool;
 
     public HttpConfig(Builder builder) {
         this.connectTimeout = builder.connectTimeout;
