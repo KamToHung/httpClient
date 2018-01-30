@@ -42,7 +42,7 @@ public interface RequestInterface {
      * @param <T>
      * @return
      */
-    <T> ResponseBean<T> get(String url, Map<String,String> headers, Class<T> responseType, Map<String,String> value);
+    <T> ResponseBean<T> get(String url, Map<String,String> headers, Class<T> responseType, Map<String,String> value) throws ConnectionException;
 
     /**
      *
@@ -52,7 +52,7 @@ public interface RequestInterface {
      * @param <T>
      * @return
      */
-    <T> ResponseBean<T> get(String url, Class<T> responseType, Map<String,String> value);
+    <T> ResponseBean<T> get(String url, Class<T> responseType, Map<String,String> value) throws ConnectionException;
 
     /**
      *
@@ -75,5 +75,5 @@ public interface RequestInterface {
      * @param <T>
      * @return
      */
-    <T> ResponseBean<T> post(String url, Map<String,String> headers, Class<T> responseType, String content, MediaType mediaType);
+    <T> ResponseBean<T> post(String url, Map<String,String> headers, Class<T> responseType, String content, MediaType mediaType) throws ConnectionException;
 }

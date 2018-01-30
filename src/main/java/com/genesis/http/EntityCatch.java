@@ -17,8 +17,6 @@ public class EntityCatch<T> implements ResponseCatchData<ResponseBean<T>> {
 
     private Class<T> cls;
 
-    private TypeReference<T> typeRef;
-
     public EntityCatch(ObjectMapper objectMapper, Class<T> cls) {
         this.objectMapper = objectMapper;
         this.cls = cls;

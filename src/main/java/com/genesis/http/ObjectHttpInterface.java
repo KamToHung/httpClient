@@ -6,11 +6,9 @@ import com.genesis.exception.MapperException;
 import com.genesis.httpInterface.ObjectMapper;
 import com.genesis.httpInterface.RequestInterface;
 import com.genesis.httpInterface.ResponseCatchData;
+import com.genesis.utils.HandleUrlUtils;
 import com.genesis.utils.HttpConfig;
-import okhttp3.MediaType;
-import okhttp3.Request;
-import okhttp3.RequestBody;
-import okhttp3.Response;
+import okhttp3.*;
 
 import java.io.IOException;
 import java.util.Map;
@@ -19,25 +17,31 @@ public abstract class ObjectHttpInterface implements RequestInterface {
 
 
     @Override
-    public <T> ResponseBean<T> get(String url, Map<String, String> headers, Class<T> responseType, Map<String, String> value) {
-        return null;
-    }
-
-    @Override
-    public <T> ResponseBean<T> get(String url, Class<T> responseType, Map<String, String> value) {
-        return null;
-    }
-
-    @Override
-    public <T> ResponseBean<T> post(String url, Class<T> responseType, String content, MediaType mediaType) throws ConnectionException {
-        Request request = new Request.Builder().url(url).post(RequestBody.create(mediaType, objectMapper().toString(content))).build();
+    public <T> ResponseBean<T> get(String url, Map<String, String> headers, Class<T> responseType, Map<String, String> value) throws ConnectionException {
+        Request request = new Request.Builder().headers(Headers.of(headers)).url(HandleUrlUtils.splitUrl(url, value)).build();
         ResponseCatchData<ResponseBean<T>> responseCatchData = new EntityCatch<>(objectMapper(), responseType);
         return handleResponse(null, request, responseCatchData);
     }
 
     @Override
-    public <T> ResponseBean<T> post(String url, Map<String, String> headers, Class<T> responseType, String content, MediaType mediaType) {
-        return null;
+    public <T> ResponseBean<T> get(String url, Class<T> responseType, Map<String, String> value) throws ConnectionException {
+        Request request = new Request.Builder().url(HandleUrlUtils.splitUrl(url, value)).build();
+        ResponseCatchData<ResponseBean<T>> responseCatchData = new EntityCatch<>(objectMapper(), responseType);
+        return handleResponse(null, request, responseCatchData);
+    }
+
+    @Override
+    public <T> ResponseBean<T> post(String url, Class<T> responseType, String content, MediaType mediaType) throws ConnectionException {
+        Request request = new Request.Builder().url(url).post(RequestBody.create(mediaType, content)).build();
+        ResponseCatchData<ResponseBean<T>> responseCatchData = new EntityCatch<>(objectMapper(), responseType);
+        return handleResponse(null, request, responseCatchData);
+    }
+
+    @Override
+    public <T> ResponseBean<T> post(String url, Map<String, String> headers, Class<T> responseType, String content, MediaType mediaType) throws ConnectionException {
+        Request request = new Request.Builder().headers(Headers.of(headers)).url(url).post(RequestBody.create(mediaType,content)).build();
+        ResponseCatchData<ResponseBean<T>> responseCatchData = new EntityCatch<>(objectMapper(), responseType);
+        return handleResponse(null, request, responseCatchData);
     }
 
     private <T> T handleResponse(HttpConfig httpConfig, Request request, ResponseCatchData<T> responseCatchData) throws ConnectionException {
@@ -52,16 +56,19 @@ public abstract class ObjectHttpInterface implements RequestInterface {
         }
         if (response.isSuccessful()) {
             try {
-                return responseCatchData.catchDate(request,response,callBack());
+                return responseCatchData.catchDate(request, response, callBack());
             } catch (IOException e) {
                 throw new ConnectionException("返回结果失败: ", e);
             } catch (MapperException e) {
                 throw new MapperException(String.format("转换失败: %s", e.getMessage()), e);
-            } catch (Throwable e) {
-                throw new ConnectionException(e);
             }
         }
-        //TODO
-        return null;
+        String responseData = null;
+        try {
+            responseData = response.body().string();
+        } catch (IOException e) {
+            throw new ConnectionException(e);
+        }
+        throw new ConnectionException("Http Code is : " + response.code() + " and response is :" + responseData);
     }
 }
