@@ -1,7 +1,16 @@
 package com.genesis.utils;
 
+import com.genesis.entity.ResponseBean;
+import com.genesis.exception.ConnectionException;
+import com.genesis.exception.MapperException;
+import com.genesis.http.HttpHelper;
+import com.genesis.httpInterface.ObjectMapper;
+import com.genesis.httpInterface.RequestInterface;
+import com.genesis.templet.json.JsonHelper;
 import okhttp3.ConnectionPool;
 
+import java.util.HashMap;
+import java.util.Map;
 import java.util.concurrent.TimeUnit;
 
 /**
@@ -22,10 +31,10 @@ public class HttpConfig {
         this.connectTimeout = builder.connectTimeout;
         this.readTimeout = builder.readTimeout;
         this.writeTimeout = builder.writeTimeout;
-        connectionPool = new ConnectionPool(builder.maxConnection,builder.keepAlive, TimeUnit.MILLISECONDS);
+        connectionPool = new ConnectionPool(builder.maxConnection, builder.keepAlive, TimeUnit.MILLISECONDS);
     }
 
-    public static class Builder{
+    public static class Builder {
 
         private long connectTimeout;
 
@@ -78,5 +87,6 @@ public class HttpConfig {
         }
 
     }
+
 
 }

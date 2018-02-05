@@ -17,14 +17,14 @@ public abstract class ObjectHttpInterface implements RequestInterface {
 
 
     @Override
-    public <T> ResponseBean<T> get(String url, Map<String, String> headers, Class<T> responseType, Map<String, String> value) throws ConnectionException {
+    public <T> ResponseBean<T> get(String url, Map<String, String> headers, Class<T> responseType, Map<String, ?> value) throws ConnectionException {
         Request request = new Request.Builder().headers(Headers.of(headers)).url(HandleUrlUtils.splitUrl(url, value)).build();
         ResponseCatchData<ResponseBean<T>> responseCatchData = new EntityCatch<>(objectMapper(), responseType);
         return handleResponse(null, request, responseCatchData);
     }
 
     @Override
-    public <T> ResponseBean<T> get(String url, Class<T> responseType, Map<String, String> value) throws ConnectionException {
+    public <T> ResponseBean<T> get(String url, Class<T> responseType, Map<String, ?> value) throws ConnectionException {
         Request request = new Request.Builder().url(HandleUrlUtils.splitUrl(url, value)).build();
         ResponseCatchData<ResponseBean<T>> responseCatchData = new EntityCatch<>(objectMapper(), responseType);
         return handleResponse(null, request, responseCatchData);

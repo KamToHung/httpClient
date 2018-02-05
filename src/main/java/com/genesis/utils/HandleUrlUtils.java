@@ -9,7 +9,7 @@ public class HandleUrlUtils {
 
     private final static Joiner.MapJoiner MAP_JOINER = Joiner.on("&").withKeyValueSeparator("=");
 
-    public static String splitUrl(String url, Map<String,String> map) {
+    public static String splitUrl(String url, Map<String,?> map) {
 
         if (map != null && !map.isEmpty()) {
             url += "?";
