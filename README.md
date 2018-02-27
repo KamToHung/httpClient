@@ -1,5 +1,8 @@
 ## httpclient
 httpclient是一个处理http的客户端,它基于Okhttp3实现的.模板参照Spring的Resttemplate.主要用来解决公司之前的项目的Http接口不统一的问题.之前公司使用的是apache的httpClient,性能方面Okhttp比httpClient好很多.Okhttp3有着良好的封装,容易配置,并且可以配置Http连接池等业务逻辑添加很方便.
+## 版本
+1.0.0 初始版本，实现了httpClient基本功能
+1.0.1 添加了可以直接返回对象的方法，而不需要在ResponseBean中取返回值
 ## 开发
 - 自定义接口参数
 ```bash

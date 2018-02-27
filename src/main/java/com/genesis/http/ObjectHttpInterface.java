@@ -17,30 +17,58 @@ public abstract class ObjectHttpInterface implements RequestInterface {
 
 
     @Override
-    public <T> ResponseBean<T> get(String url, Map<String, String> headers, Class<T> responseType, Map<String, ?> value) throws ConnectionException {
+    public <T> ResponseBean<T> getEntity(String url, Map<String, String> headers, Class<T> responseType, Map<String, ?> value) throws ConnectionException {
         Request request = new Request.Builder().headers(Headers.of(headers)).url(HandleUrlUtils.splitUrl(url, value)).build();
         ResponseCatchData<ResponseBean<T>> responseCatchData = new EntityCatch<>(objectMapper(), responseType);
         return handleResponse(null, request, responseCatchData);
     }
 
     @Override
-    public <T> ResponseBean<T> get(String url, Class<T> responseType, Map<String, ?> value) throws ConnectionException {
+    public <T> ResponseBean<T> getEntity(String url, Class<T> responseType, Map<String, ?> value) throws ConnectionException {
         Request request = new Request.Builder().url(HandleUrlUtils.splitUrl(url, value)).build();
         ResponseCatchData<ResponseBean<T>> responseCatchData = new EntityCatch<>(objectMapper(), responseType);
         return handleResponse(null, request, responseCatchData);
     }
 
     @Override
-    public <T> ResponseBean<T> post(String url, Class<T> responseType, String content, MediaType mediaType) throws ConnectionException {
+    public <T> ResponseBean<T> postEntity(String url, Class<T> responseType, String content, MediaType mediaType) throws ConnectionException {
         Request request = new Request.Builder().url(url).post(RequestBody.create(mediaType, content)).build();
         ResponseCatchData<ResponseBean<T>> responseCatchData = new EntityCatch<>(objectMapper(), responseType);
         return handleResponse(null, request, responseCatchData);
     }
 
     @Override
-    public <T> ResponseBean<T> post(String url, Map<String, String> headers, Class<T> responseType, String content, MediaType mediaType) throws ConnectionException {
-        Request request = new Request.Builder().headers(Headers.of(headers)).url(url).post(RequestBody.create(mediaType,content)).build();
+    public <T> ResponseBean<T> postEntity(String url, Map<String, String> headers, Class<T> responseType, String content, MediaType mediaType) throws ConnectionException {
+        Request request = new Request.Builder().headers(Headers.of(headers)).url(url).post(RequestBody.create(mediaType, content)).build();
         ResponseCatchData<ResponseBean<T>> responseCatchData = new EntityCatch<>(objectMapper(), responseType);
+        return handleResponse(null, request, responseCatchData);
+    }
+
+    @Override
+    public <T> T getObject(String url, Class<T> responseType, Map<String, ?> value) throws ConnectionException {
+        Request request = new Request.Builder().url(HandleUrlUtils.splitUrl(url, value)).build();
+        ResponseCatchData<T> responseCatchData = new ObjectCatch<>(objectMapper(), responseType);
+        return handleResponse(null, request, responseCatchData);
+    }
+
+    @Override
+    public <T> T getObject(String url, Map<String, String> headers, Class<T> responseType, Map<String, ?> value) throws ConnectionException {
+        Request request = new Request.Builder().headers(Headers.of(headers)).url(HandleUrlUtils.splitUrl(url, value)).build();
+        ResponseCatchData<T> responseCatchData = new ObjectCatch<>(objectMapper(), responseType);
+        return handleResponse(null, request, responseCatchData);
+    }
+
+    @Override
+    public <T> T postObject(String url, Class<T> responseType, String content, MediaType mediaType) throws ConnectionException {
+        Request request = new Request.Builder().url(url).post(RequestBody.create(mediaType, content)).build();
+        ResponseCatchData<T> responseCatchData = new ObjectCatch<>(objectMapper(), responseType);
+        return handleResponse(null, request, responseCatchData);
+    }
+
+    @Override
+    public <T> T postObject(String url, Map<String, String> headers, Class<T> responseType, String content, MediaType mediaType) throws ConnectionException {
+        Request request = new Request.Builder().headers(Headers.of(headers)).url(url).post(RequestBody.create(mediaType, content)).build();
+        ResponseCatchData<T> responseCatchData = new ObjectCatch<>(objectMapper(), responseType);
         return handleResponse(null, request, responseCatchData);
     }
 

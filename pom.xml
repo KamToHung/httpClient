@@ -6,7 +6,7 @@
 
     <groupId>com.genesis.httpclient</groupId>
     <artifactId>httpclient</artifactId>
-    <version>1.0.0</version>
+    <version>1.0.1</version>
 
     <name>interface-utils</name>
     <description>httpClient</description>
