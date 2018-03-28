@@ -1,4 +1,4 @@
-package com.genesis.utils;
+package com.genesis;
 
 /**
  * @Description:

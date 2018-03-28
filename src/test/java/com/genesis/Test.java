@@ -1,10 +1,11 @@
-package com.genesis.utils;
+package com.genesis;
 
 import com.genesis.entity.ResponseBean;
 import com.genesis.exception.ConnectionException;
 import com.genesis.httpinterface.ObjectMapper;
 import com.genesis.httpinterface.RequestInterface;
 import com.genesis.templet.json.JsonHelper;
+import com.genesis.utils.HttpConfig;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -12,11 +13,11 @@ import java.util.Map;
 /**
  * @Description:
  * @author: Terry
- * @create 2018-02-05 18:16
+ * @create 2018-03-28 10:36
  */
 public class Test {
-
-    public static void main(String[] args) throws ConnectionException {
+    @org.junit.Test
+    public void test01() throws ConnectionException {
         RequestInterface requestInterface = new JsonHelper(new HttpConfig.Builder().connectTimeout(60000)
                 .keepAlive(5).maxConnection(5).readTimeout(10000).writeTimeout(10000).build());
         Map<String, Object> map = new HashMap<>(3);
