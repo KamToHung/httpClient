@@ -1,13 +1,16 @@
 package com.genesis.templet.json;
 
+import com.genesis.http.AbstractObjectHttpInterface;
 import com.genesis.http.HttpHelper;
-import com.genesis.http.ObjectHttpInterface;
-import com.genesis.httpInterface.ObjectMapper;
-import com.genesis.httpInterface.RequestInterface;
-import com.genesis.httpInterface.ResponseCallBack;
+import com.genesis.httpinterface.ObjectMapper;
+import com.genesis.httpinterface.RequestInterface;
+import com.genesis.httpinterface.ResponseCallBack;
 import com.genesis.utils.HttpConfig;
 
-public class JsonHelper extends ObjectHttpInterface {
+/**
+ * @author Terry
+ */
+public class JsonHelper extends AbstractObjectHttpInterface {
 
 
     private HttpHelper httpHelper;

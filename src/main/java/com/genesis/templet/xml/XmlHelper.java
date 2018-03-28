@@ -1,12 +1,15 @@
 package com.genesis.templet.xml;
 
+import com.genesis.http.AbstractObjectHttpInterface;
 import com.genesis.http.HttpHelper;
-import com.genesis.http.ObjectHttpInterface;
-import com.genesis.httpInterface.ObjectMapper;
-import com.genesis.httpInterface.ResponseCallBack;
+import com.genesis.httpinterface.ObjectMapper;
+import com.genesis.httpinterface.ResponseCallBack;
 import com.genesis.utils.HttpConfig;
 
-public class XmlHelper extends ObjectHttpInterface {
+/**
+ * @author Terry
+ */
+public class XmlHelper extends AbstractObjectHttpInterface {
 
     private HttpHelper httpHelper;
 

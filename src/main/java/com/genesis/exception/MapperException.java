@@ -2,6 +2,8 @@ package com.genesis.exception;
 
 /**
  * 转换异常处理
+ *
+ * @author Terry
  */
 public class MapperException extends ConnectionException {
 

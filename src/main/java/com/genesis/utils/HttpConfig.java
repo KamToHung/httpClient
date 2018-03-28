@@ -1,16 +1,7 @@
 package com.genesis.utils;
 
-import com.genesis.entity.ResponseBean;
-import com.genesis.exception.ConnectionException;
-import com.genesis.exception.MapperException;
-import com.genesis.http.HttpHelper;
-import com.genesis.httpInterface.ObjectMapper;
-import com.genesis.httpInterface.RequestInterface;
-import com.genesis.templet.json.JsonHelper;
 import okhttp3.ConnectionPool;
 
-import java.util.HashMap;
-import java.util.Map;
 import java.util.concurrent.TimeUnit;
 
 /**

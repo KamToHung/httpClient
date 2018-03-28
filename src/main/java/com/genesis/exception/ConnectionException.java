@@ -1,7 +1,9 @@
 package com.genesis.exception;
 
-import java.io.Serializable;
 
+/**
+ * @author Terry
+ */
 public class ConnectionException extends Exception {
 
     private static final long serialVersionUID = -8863994063415020267L;

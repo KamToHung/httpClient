@@ -3,6 +3,9 @@ package com.genesis.entity;
 import okhttp3.Request;
 import okhttp3.Response;
 
+/**
+ * @author Terry
+ */
 public class ResponseBean<T> {
 
     /**

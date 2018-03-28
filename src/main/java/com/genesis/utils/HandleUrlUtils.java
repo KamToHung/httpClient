@@ -5,6 +5,9 @@ import com.google.common.base.Joiner;
 import java.util.HashMap;
 import java.util.Map;
 
+/**
+ * @author Terry
+ */
 public class HandleUrlUtils {
 
     private final static Joiner.MapJoiner MAP_JOINER = Joiner.on("&").withKeyValueSeparator("=");
@@ -19,7 +22,7 @@ public class HandleUrlUtils {
     }
 
     public static void main(String[] args) {
-        Map<String,String> map = new HashMap<>();
+        Map<String,String> map = new HashMap<>(2);
         map.put("name","Terry");
         map.put("sex","male");
         System.out.println(splitUrl("www.baidu.com",map));

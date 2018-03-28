@@ -1,9 +1,9 @@
 package com.genesis.http;
 
 import com.genesis.exception.MapperException;
-import com.genesis.httpInterface.ObjectMapper;
-import com.genesis.httpInterface.ResponseCallBack;
-import com.genesis.httpInterface.ResponseCatchData;
+import com.genesis.httpinterface.ObjectMapper;
+import com.genesis.httpinterface.ResponseCallBack;
+import com.genesis.httpinterface.ResponseCatchData;
 import okhttp3.Request;
 import okhttp3.Response;
 

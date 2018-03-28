@@ -1,16 +1,18 @@
 package com.genesis.http;
 
-import com.fasterxml.jackson.core.type.TypeReference;
 import com.genesis.entity.ResponseBean;
 import com.genesis.exception.MapperException;
-import com.genesis.httpInterface.ObjectMapper;
-import com.genesis.httpInterface.ResponseCallBack;
-import com.genesis.httpInterface.ResponseCatchData;
+import com.genesis.httpinterface.ObjectMapper;
+import com.genesis.httpinterface.ResponseCallBack;
+import com.genesis.httpinterface.ResponseCatchData;
 import okhttp3.Request;
 import okhttp3.Response;
 
 import java.io.IOException;
 
+/**
+ * @author Terry
+ */
 public class EntityCatch<T> implements ResponseCatchData<ResponseBean<T>> {
 
     private ObjectMapper objectMapper;

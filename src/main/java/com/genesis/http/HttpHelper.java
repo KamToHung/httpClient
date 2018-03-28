@@ -9,6 +9,9 @@ import okhttp3.Response;
 import java.io.IOException;
 import java.util.concurrent.TimeUnit;
 
+/**
+ * @author Terry
+ */
 public class HttpHelper {
     public final static MediaType FORM_UTF8 = MediaType.parse("application/x-www-form-urlencoded; charset=UTF-8");
     public final static MediaType JSON_UTF8 = MediaType.parse("application/json; charset=utf-8");
